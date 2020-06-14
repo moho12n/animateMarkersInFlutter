@@ -4,7 +4,7 @@ import 'dart:async';
 import "package:flutter/material.dart";
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart';
-import '../models/markerModel.dart';
+
 import 'dart:ui' as ui;
 import 'package:flutter/widgets.dart';
 import '../tools/tools.dart';
@@ -45,7 +45,7 @@ class _MainScreenState extends State<MainMapScreen> {
 
   void getMarkers() async {
     final Uint8List userMarkerIcon =
-        await getBytesFromAsset('assets/userMarker.png', 75);
+        await getBytesFromAsset('assets/normalMarker.png', 75);
 
     final Uint8List selectedMarkerIcon =
         await getBytesFromAsset('assets/selectedMarker.png', 100);
@@ -81,11 +81,11 @@ class _MainScreenState extends State<MainMapScreen> {
     valueNotifier.value = indexMarker;
   }
 
-  //******** OnMapCreated */
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-    _controller.complete(controller);
-  }
+    //******** OnMapCreated */
+    void _onMapCreated(GoogleMapController controller) {
+      mapController = controller;
+      _controller.complete(controller);
+    }
 
   @override
   void initState() {
@@ -109,7 +109,7 @@ class _MainScreenState extends State<MainMapScreen> {
             children: <Widget>[
               Positioned.fill(
                 child: ValueListenableBuilder(
-                    valueListenable: valueNotifier,
+                    valueListenable: valueNotifier, // that's the value we are listening to 
                     builder: (context, value, child) {
                       return GoogleMap(
                           zoomControlsEnabled: false,
@@ -123,6 +123,7 @@ class _MainScreenState extends State<MainMapScreen> {
                           ));
                     }),
               ),
+              // Here is tha PageView Builder
               Align(
                   alignment: Alignment.bottomCenter,                  
                   child: Padding(

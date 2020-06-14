@@ -13,6 +13,8 @@ class MarkersModel {
       this.longitude,
       this.image);
 
+// you can use this model with your backend as well :  
+
 /*  factory MarkersModel.fromJson(Map<String, dynamic> json) => MarkersModel(
       id: json['id'],
       name: json['name'],
